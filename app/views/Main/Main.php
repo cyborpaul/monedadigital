@@ -67,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td><?php echo $row['usu_txt_dni']; ?></td>
                     <td><?php echo $row['saldo']; ?></td>
 
-                    <td><a href="/monedadigital/User/usuario/<?php $row['usu_int_id']; ?>">Ver</a></td>
+                    <td><a href="/monedadigital/User/usuario/<?php echo $row['usu_int_id']; ?>">Ver</a></td>
                   </tr>
                   <?php $contador++;} ?>
                     
