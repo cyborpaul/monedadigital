@@ -65,7 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <td><?php echo $row['usu_txt_nombre']; ?></td>
                     <td><?php echo $row['usu_txt_apellido']; ?></td>
                     <td><?php echo $row['usu_txt_dni']; ?></td>
-                    <td><?php echo $row['usu_txt_ganancia']; ?></td>
+                    <td><?php echo $row['saldo']; ?></td>
 
                     <td><a href="/monedadigital/User/usuario/<?php $row['usu_int_id']; ?>">Ver</a></td>
                   </tr>
@@ -152,36 +152,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
       "responsive": true,
     });
   });
-</script>
-
-<script>
-      function allData(){
-        $.ajax({
-            type:"GET",
-            datatype:'json',
-            url: '/monedadigital/Main/users/',
-            success: function(response){
-                var data=""
-                $.each(response, function(key, value){
-                  console.log(response);
-                  data=data+'<tr>'+                    
-                    '<td>'+value.usu_txt_nombre+'</td>'+
-                    '<td>'+value.usu_txt_apellido+' </td>'+
-                    '<td>'+value.usu_txt_dni+' </td>'+
-                    '<td><a href="/monedadigital/User/usuario/'+value.usu_int_id+'">Ver</a></td>'+
-                  '</tr>'
-
-                })
-                $('#tarjeta').html(data);
-                
-            }
-        })
-    }
-    allData();
-
-
-
-
 </script>
 
 </body>
