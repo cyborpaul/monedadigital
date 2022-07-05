@@ -167,7 +167,7 @@ $.ajax({
     method:"POST",
     dataType : "json",
     data:{'id_jugador': usuario, 'saldo': final},
-    url: 'User/level/',
+    url: '/User/level/',
     success: function(response){ 
       if(response=="Hola"){
         Swal.fire('Recarga exitosa');
