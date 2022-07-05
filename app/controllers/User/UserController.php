@@ -59,7 +59,7 @@ class UserController extends Controller
   }
 
   public function subirarchivo(){
-    $dir = "uploads/";
+    $dir = "/monedadigital/uploads/";
     $fileName = basename($_FILES['file']['name']);
     move_uploaded_file($_FILES['file']['tmp_name'], $dir . $fileName);
 
