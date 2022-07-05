@@ -59,10 +59,16 @@ class UserController extends Controller
   }
 
   public function subirarchivo(){
-    $nombre=$_FILES['file']['name'];
-    $dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/'.$nombre;
-    $archivotemporal=$_FILES['file']['tmp_name'];
-    @move_uploaded_file($archivotemporal, $dir);
+    $dir = "uploads/";
+    if( !file_exists($dir) ){
+      mkdir($dir);
+    };
+    if( is_dir($dir) ){
+      $fileName = basename($_FILES['file']['name']);
+      move_uploaded_file($_FILES['file']['tmp_name'], $dir . $fileName);
+    }else{
+      echo 'this path contains a file';
+    };
 
   }
 
