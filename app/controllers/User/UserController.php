@@ -59,8 +59,10 @@ class UserController extends Controller
   }
 
   public function subirarchivo(){
-    $dir = $_SERVER['DOCUMENT_ROOT']."/uploads".$_FILES['file']['name'];
-    move_uploaded_file($_FILES['file']['tmp_name'], $dir);
+    $nombre=$_FILES['file']['name'];
+    $dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/'.$nombre;
+    $archivotemporal=$_FILES['file']['tmp_name'];
+    @move_uploaded_file($archivotemporal, $dir);
 
   }
 
