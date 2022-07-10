@@ -161,12 +161,13 @@ $(document).on('click', '#recargar', function(){
     var actual=$('#actual').val(); 
     var saldo= $('#saldo').val();  
     var usuario=$('#usuario').val();
+    var doc=<?=$dni?>;
     var final= parseFloat(actual)+parseFloat(saldo);
 
 $.ajax({
     method:"POST",
     dataType : "json",
-    data:{'id_jugador': usuario, 'saldo': final},
+    data:{'id_jugador': usuario, 'saldo': final, 'dni': doc, 'monto':saldo},
     url: '/monedadigital/User/level/',
     success: function(response){ 
       if(response=="Hola"){
@@ -179,9 +180,6 @@ $.ajax({
 
 });
 
-function actualizar(){  
-
-} 
 </script>
 </body>
 </html>

@@ -1,10 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No se permite acceso directo');
+require_once ROOT . '/monedadigital/app/models/Historial/HistorialModel.php';
 require_once ROOT . '/monedadigital/app/models/User/UserModel.php';
 /**
  * Home controller
  */
-class UserController extends Controller
+class HistorialController extends Controller
 {
   /**
    * string 
@@ -15,13 +16,15 @@ class UserController extends Controller
    * object 
    */
   public $model;
+  public $user;
 
   /**
    * Inicializa valores 
    */
   public function __construct()
   {
-    $this->model = new UserModel();
+    $this->model = new HistorialModel();
+    $this->user= new UserModel();
     $this->nombre = 'Mundo';
   }
 
@@ -41,8 +44,10 @@ class UserController extends Controller
   {
     $params = array(
       'nombre' => $this->nombre,
+      'apellido'=>$this->apellido,
       'saldo'=>$this->saldo,
-      'dni'=>$this->dni
+      'dni'=>$this->dni,
+      'total'=>$this->total
     );
     $this->render(__CLASS__, $params); 
 
@@ -53,41 +58,14 @@ class UserController extends Controller
   */
   public function usuario($param)
   {
-    $res = $this->model->getUser($param);
+    $res = $this->user->getUser($param);
+    $resp=$this->model->totalHistorial($param);
     $this->nombre = $res['usu_int_id'];
     $this->saldo=$res['saldo'];
+    $this->apellido=$res['usu_txt_apellido'];
     $this->dni=$res['usu_txt_dni'];
+    $this->total=$resp['total'];
     $this->show();
-  }
-
-  public function historial($param){
-    $res=$this->model->getHistorial($param);
 
   }
-
-  public function subirarchivo(){
-    $dir = "uploads/";
-    if( !file_exists($dir) ){
-      mkdir($dir);
-    };
-    if( is_dir($dir) ){
-      $fileName = basename($_FILES['file']['name']);
-      move_uploaded_file($_FILES['file']['tmp_name'], $dir . $fileName);
-    }else{
-      echo 'this path contains a file';
-    };
-
-  }
-
-  public function level($request_params){
-    $id = $request_params['id_jugador'];
-    $saldo=$request_params['saldo'];
-    $actualizar=$this->model->actualizarJugador($request_params);
-    $recargar=$this->model->registrarhistorial($request_params);
-    echo json_encode("Hola");
-  }
-
-
-
-
 }
