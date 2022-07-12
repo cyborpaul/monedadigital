@@ -62,7 +62,7 @@
                     ?>
                   <tr>
                     <td><?php echo $contador ?></td>
-                    <td>S/. <?php echo $row['his_varchar_monto']; ?></td>
+                    <td style="color:green;"><strong>S/. <?php echo $row['his_varchar_monto']; ?></strong></td>
                     <td><?php echo $row['his_varchar_fecha']; ?></td>
                   </tr>
                   <?php $contador++;} ?>
@@ -116,7 +116,7 @@
                   </thead>
                   <tbody>
                   <?php
-                      $query = "SELECT * FROM inventalogame_movimientos WHERE usu_int_id='$nombre' ORDER BY mov_varchar_date DESC";
+                      $query = "SELECT * FROM inventalogame_movimientos WHERE usu_int_id='$nombre'  ORDER BY mov_varchar_date DESC";
                       $mysqli = new mysqli(HOST, USER, PASSWORD, DB_NAME);                 
                       $result_tasks = mysqli_query($mysqli, $query);
                       $contador=1;
